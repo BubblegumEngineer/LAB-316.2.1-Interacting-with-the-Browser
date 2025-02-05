@@ -1,5 +1,5 @@
 body {
-    background: #f5f5f4;
+    background: #ecec31;
     color: #232323;
     line-height: 30px;
     font-size: 20px;
@@ -22,11 +22,17 @@ body {
   button {
     font-size: 20px;
     padding: 5px 10px;
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 5px;
     cursor: pointer;
+    background: #53c6ed;
   }
   button:hover {
     border-color: #09507c;
     background-color: #deedf2;
+  }
+
+  .progress {
+    font-size: 18px;
+    margin-top: 20px;
   }

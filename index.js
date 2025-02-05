@@ -26,47 +26,41 @@ console.log("======================================")
 //Once you have an idea in mind, begin building. Remember that this can be a very simple game!
 
 
+let secretNumber = 42; // Static secret number
+let guessesLeft = 5; // Limit the user to 5 guesses
+let userGuess = null;
 
-//if (isNan(userInput) || userInput < 1 || ....
+document.getElementById('startBtn').addEventListener('click', startGame);
 
-// Set up the target number for the user to guess.
-const targetNumber = 7; // This is the number the player needs to guess.
+function startGame() {
+    // Reset the game and progress
+    guessesLeft = 5;
+    document.getElementById('progress').textContent = `You have ${guessesLeft} guesses left.`;
+    
+    // Game loop: Allow the user to guess 5 times
+    while (guessesLeft > 0) {
+        userGuess = parseInt(prompt("Guess a number between 1 and 100:"));
+        
+        if (userGuess === secretNumber) {
+            alert("Congrats! You Won!");
+            break;
+        } else if (userGuess < secretNumber) {
+            alert("Too low! Try again.");
+        } else if (userGuess > secretNumber) {
+            alert("Too high! Try again.");
+        }
+        
+        guessesLeft--;
+        updateProgress();
+        
+        if (guessesLeft === 0) {
+            alert("Sorry! You've run out of guesses. The correct number was " + secretNumber);
+        }
+    }
+}
 
-let remainingGuesses = 5; // Set the number of guesses allowed.
-let guessHistory = []; // To store the user's guesses.
-
-// Grab the app container
-const app = document.getElementById('app');
-
-// Create and style the progress and result elements dynamically
-const progressDisplay = document.createElement('div');
-const resultDisplay = document.createElement('div');
-
-// Set initial styles for the progress and result display
-progressDisplay.id = 'progress';
-resultDisplay.id = 'result';
-
-// Style the elements dynamically using DOM manipulation
-Object.assign(progressDisplay.style, {
-    marginTop: '20px',
-    fontWeight: 'bold',
-    fontSize: '18px',
-    padding: '10px',
-    border: '1px solid #ccc',
-    backgroundColor: '#fff',
-    borderRadius: '5px',
-});
-
-Object.assign(resultDisplay.style, {
-    marginTop: '20px',
-    fontWeight: 'bold',
-    fontSize: '18px',
-    padding: '10px',
-    border: '1px solid #ccc',
-    backgroundColor: '#fff',
-    borderRadius: '5px',
-    color: 'green', // We'll change this color later if the game ends in failure
-});
-
-// Append the
+// Function to update the progress:
+function updateProgress() {
+    document.getElementById('progress').textContent = `You have ${guessesLeft} guesses left.`;
+}
 
